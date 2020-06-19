@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class About extends Component<any, any> {
-    constructor(props: any) {
-        super(props);
-    }
     render() {
         return (
             <div>

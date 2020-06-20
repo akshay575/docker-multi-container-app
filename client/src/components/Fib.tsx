@@ -55,28 +55,33 @@ class Fib extends Component<any, any> {
 
     render() {
         return (
-            <div>
-                <form className="form-inline" onSubmit={this.handleSubmit}>
-                    <div className="form-group mb-2">
-                        <label>Enter your index</label>
-                        <input type="text" className="form-control-plaintext" value={ this.state.index }
-                        onChange={event => this.setState({ index: event.target.value })} />
-                    </div>
-                    <button type="submit" className="btn btn-primary mb-2">Submit</button>
-                </form>
+            <div className="row">
+                <div className="col">
+                    <form className="form-inline" onSubmit={this.handleSubmit}>
+                        <div className="form-group mb-2">
+                            <input type="text" readOnly className="form-control-plaintext" value="Enter your index: " />
+                        </div>
+                        <div className="form-group mx-sm-3 mb-2">
+                            <input type="text" className="form-control" value={ this.state.index }
+                                onChange={event => this.setState({ index: event.target.value })} />
+                        </div>
+                        <button type="submit" className="btn btn-primary mb-2">Submit</button>
+                    </form>
+                    <br />
 
-                <table className="table table-hover">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Indexes Searched</th>
-                        <th scope="col">Values Calculated</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.renderRows() }
-                    </tbody>
-                </table>
+                    <table className="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Indexes Searched</th>
+                            <th scope="col">Values Calculated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { this.renderRows() }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }

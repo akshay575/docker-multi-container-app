@@ -1,0 +1,24 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t akshay575/client-test -f ./client/Dockerfile.dev ./client
+  # can include other test builds and script as well
+
+script:
+  - docker run -e CI=true akshay575/client-test npm test
+
+after_success:
+  - docker build -t akshay575/multi-client ./client
+  - docker build -t akshay575/multi-nginx ./nginx
+  - docker build -t akshay575/multi-server ./server
+  - docker build -t akshay575/multi-worker ./worker
+  # login to docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push images to dockerhub
+  - docker push akshay575/multi-client
+  - docker push akshay575/multi-nginx
+  - docker push akshay575/multi-server
+  - docker push akshay575/multi-worker
